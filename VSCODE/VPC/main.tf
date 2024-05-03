@@ -1,7 +1,7 @@
 resource "aws_internet_gateway" "main" {
   vpc_id = aws_vpc.main.id
   tags = {
-    Name = "practice-internet-gateway"
+    Name = "${var.project_name}-internet-gateway"
     Terraform="true"
     Environment="DEV"
   }
@@ -14,7 +14,7 @@ resource "aws_vpc" "main" {
   enable_dns_hostnames = true
 
   tags = {
-    Name = "practice-vpc"
+    Name = "${var.project_name}-vpc"
     Terraform="true"
     Environment="DEV"
   }
@@ -25,7 +25,7 @@ resource "aws_subnet" "public_subnet" {
   cidr_block = "10.0.1.0/24"
 
   tags = {
-    Name = "practice-public-subnet"
+    Name = "${var.project_name}-public-subnet"
     Terraform="true"
     Environment="DEV"
   }
@@ -39,7 +39,7 @@ resource "aws_route_table" "public_route_table" {
     gateway_id = aws_internet_gateway.main.id
   }
   tags = {
-    Name = "practice-public-rt"
+    Name = "${var.project_name}-public-rt"
     Terraform="true"
     Environment="DEV"
   }
@@ -55,7 +55,7 @@ resource "aws_subnet" "private_subnet" {
   cidr_block = "10.0.11.0/24"
 
   tags = {
-    Name = "practice-private-subnet"
+    Name = "${var.project_name}-private-subnet"
     Terraform="true"
     Environment="DEV"
   }
@@ -65,7 +65,7 @@ resource "aws_route_table" "private_route_table" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = "practice-private-rt"
+    Name = "${var.project_name}-private-rt"
     Terraform="true"
     Environment="DEV"
   }
@@ -81,7 +81,7 @@ resource "aws_subnet" "database_subnet" {
   cidr_block = "10.0.21.0/24"
 
   tags = {
-    Name = "practice-database-subnet"
+    Name = "${var.project_name}-database-subnet"
     Terraform="true"
     Environment="DEV"
   }
@@ -91,7 +91,7 @@ resource "aws_route_table" "database_route_table" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = "practice-database-rt"
+    Name = "${var.project_name}-database-rt"
     Terraform="true"
     Environment="DEV"
   }
